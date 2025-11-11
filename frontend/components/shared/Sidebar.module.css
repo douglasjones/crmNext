@@ -1,0 +1,272 @@
+/* /Volumes/HDDisco/dev/docker/crm-projeto/frontend/components/shared/Sidebar.module.css */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  height: 100vh;
+  background-color: #003f77;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: width 0.2s ease-in-out;
+  z-index: 1000;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.toggleButton {
+  background: none;
+  border: none;
+  color: #d1d5db;
+  cursor: pointer;
+  position: absolute;
+  right: -12px;
+  top: 70px; /* Ajustado para ficar abaixo da seção da empresa */
+  width: 24px;
+  height: 24px;
+  border-radius: 50%; /* Restaurado para formato arredondado */
+  background-color: #003f77;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease-in-out;
+  z-index: 1001;
+}
+.toggleButton:hover {
+  background-color: #0056a0;
+}
+.toggleButton svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease-in-out;
+}
+.toggleButton.collapsed svg {
+  transform: rotate(180deg);
+}
+
+
+/* --- Company Section --- */
+.companySection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  flex-shrink: 0;
+}
+.sidebar.collapsed .companySection {
+  justify-content: center;
+  padding: 20px 0;
+}
+.companyId {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.sidebar.collapsed .companyId {
+  display: none;
+}
+.companyIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+.sidebar.collapsed .companyIcon {
+  margin-right: 0;
+}
+.companyInfo {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.companyName {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f9fafb;
+  white-space: nowrap;
+}
+.userName {
+  font-size: 12px;
+  color: #d1d5db;
+  white-space: nowrap;
+}
+.logoutButton {
+  background: none;
+  border: none;
+  color: #d1d5db;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s, color 0.2s;
+  font-size: 10px;
+  width: 50px;
+  flex-shrink: 0;
+}
+.logoutButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+.logoutButton svg {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 4px;
+}
+.sidebar.collapsed .logoutButton {
+  width: auto;
+  padding: 8px 0;
+}
+.sidebar.collapsed .logoutButton span {
+  display: none;
+}
+
+/* --- Navigation --- */
+.nav {
+  flex-grow: 1;
+  padding: 16px;
+  overflow-y: auto;
+}
+.nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.navLinkContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  transition: background-color 0.2s;
+}
+.navLinkContainer:hover {
+  background-color: rgba(255, 255, 255, 0.15); /* Aumenta a opacidade para um destaque mais visível */
+}
+.navLinkContainer.active {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.navLink {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  text-decoration: none;
+  color: #d1d5db;
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.navLinkContainer.active .navLink {
+  color: #ffffff;
+}
+.icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+.name {
+  font-size: 14px;
+  font-weight: 500;
+}
+.sidebar.collapsed .name {
+  display: none;
+}
+.sidebar.collapsed .icon {
+  margin-right: 0;
+}
+.sidebar.collapsed .navLink {
+  justify-content: center;
+}
+
+/* Submenu */
+.submenuToggle {
+  background: none;
+  border: none;
+  color: #d1d5db;
+  cursor: pointer;
+  padding: 8px;
+  margin-right: 4px;
+  border-radius: 6px;
+}
+.submenuToggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.submenuToggle svg {
+    width: 16px;
+    height: 16px;
+}
+
+.submenuToggleOpen {
+  background-color: #007bff; /* Um azul mais vibrante */
+  color: #ffffff; /* Ícone branco para contraste */
+  border: 1px solid #ffffff; /* Adiciona uma borda branca */
+}
+.submenu {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0;
+}
+
+.submenu li {
+  margin-left: 40px; /* Indenta cada item do submenu */
+  border-left: 2px solid rgba(255, 255, 255, 0.5); /* Aplica a linha a cada item */
+}
+
+.submenu .navLink {
+  padding: 6px 12px; /* Ajusta o padding para o texto ficar próximo da linha */
+}
+
+.submenu .icon {
+  width: 18px; /* Ícone menor */
+  height: 18px;
+}
+
+.submenu .name {
+  font-size: 13px; /* Fonte ligeiramente menor */
+}
+
+/* --- Footer --- */
+.footer {
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  flex-shrink: 0;
+  text-align: center;
+}
+.sidebar.collapsed .footer {
+  padding: 20px 0;
+}
+.logoContainer {
+  margin-bottom: 8px;
+}
+.sidebar.collapsed .logoContainer {
+  margin-bottom: 0;
+}
+.logoContainer img {
+  max-width: 60px;
+  height: auto;
+}
+.sidebar.collapsed .logoContainer img {
+    max-width: 40px;
+}
+.version {
+  font-size: 12px;
+  color: #9ca3af;
+}
+.sidebar.collapsed .version {
+  display: none;
+}

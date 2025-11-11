@@ -1,0 +1,126 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeIn 0.2s forwards;
+}
+
+.dialog {
+  background-color: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  transform: scale(0.95);
+  animation: popIn 0.2s forwards;
+}
+
+.iconContainer {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconContainer svg {
+  width: 40px;
+  height: 40px;
+}
+
+/* Tipos de Alerta */
+.success .iconContainer {
+  background-color: #ecfdf5; /* green-50 */
+}
+.success .iconContainer svg {
+  color: #10b981; /* green-500 */
+}
+
+.error .iconContainer {
+  background-color: #fef2f2; /* red-50 */
+}
+.error .iconContainer svg {
+  color: #ef4444; /* red-500 */
+}
+
+.warning .iconContainer {
+  background-color: #fffbeb; /* amber-50 */
+}
+.warning .iconContainer svg {
+  color: #f59e0b; /* amber-500 */
+}
+
+.info .iconContainer {
+  background-color: #eff6ff; /* blue-50 */
+}
+.info .iconContainer svg {
+  color: #3b82f6; /* blue-500 */
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+.message {
+  font-size: 16px;
+  color: #4b5563;
+  margin-bottom: 24px;
+}
+
+.button {
+  width: 100%;
+  padding: 12px 0;
+  border-radius: 6px;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.button:hover {
+  opacity: 0.9;
+}
+
+/* Cores dos botões por tipo */
+.success .button {
+  background-color: #10b981;
+}
+.error .button {
+  background-color: #ef4444;
+}
+.warning .button {
+  background-color: #f59e0b;
+}
+.info .button {
+  background-color: #3b82f6;
+}
+
+/* Animações */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popIn {
+  to {
+    transform: scale(1);
+  }
+}

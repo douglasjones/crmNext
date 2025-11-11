@@ -1,0 +1,113 @@
+/* AlertDialog.module.css */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.dialog {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 400px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-top: 5px solid; /* Borda colorida no topo */
+}
+
+.iconContainer {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+}
+
+.iconContainer svg {
+  width: 100%;
+  height: 100%;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: #1f2937;
+}
+
+.message {
+  font-size: 16px;
+  color: #4b5563;
+  margin: 0 0 24px 0;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.button {
+  flex: 1;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: white;
+  background-color: #3b82f6; /* Cor padrão do botão OK */
+}
+
+.button:hover {
+  opacity: 0.9;
+}
+
+.confirmButton {
+  background-color: #16a34a; /* green-600 */
+}
+
+.cancelButton {
+  background-color: #6b7280; /* gray-500 */
+}
+
+/* Cores baseadas no tipo de alerta */
+.info {
+  border-color: #3b82f6; /* blue-500 */
+}
+.info .iconContainer {
+  color: #3b82f6;
+}
+
+.success {
+  border-color: #16a34a; /* green-600 */
+}
+.success .iconContainer {
+  color: #16a34a;
+}
+
+.warning {
+  border-color: #f59e0b; /* amber-500 */
+}
+.warning .iconContainer {
+  color: #f59e0b;
+}
+
+.error {
+  border-color: #ef4444; /* red-500 */
+}
+.error .iconContainer {
+  color: #ef4444;
+}

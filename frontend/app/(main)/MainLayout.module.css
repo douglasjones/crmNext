@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 24px;
+  margin-left: 260px; /* Largura padrão do Sidebar */
+  background-color: #f4f7f9;
+  min-height: 100vh;
+  transition: margin-left 0.2s ease-in-out; /* Transição suave */
+}
+
+.contentCollapsed {
+  margin-left: 80px; /* Nova largura do Sidebar recolhido */
+}

@@ -1,0 +1,230 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 260px; /* Largura padrão */
+  height: 100vh;
+  background-color: #003f77;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: width 0.2s ease-in-out; /* Transição suave */
+}
+
+.sidebar.collapsed {
+  width: 80px; /* Largura recolhida */
+}
+
+/* Seção Superior */
+.companySection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.sidebar.collapsed .companySection {
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.companyId {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.sidebar.collapsed .companyId {
+  display: none; /* Esconde o texto da empresa/usuário */
+}
+
+.companyIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.sidebar.collapsed .companyIcon {
+  margin-right: 0;
+}
+
+.companyInfo {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.companyName {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f9fafb;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.userName {
+  font-size: 12px;
+  color: #d1d5db;
+}
+
+.logoutButton {
+  background: none;
+  border: none;
+  color: #d1d5db;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s, color 0.2s;
+  font-size: 10px;
+  width: 50px;
+}
+
+.logoutButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.logoutButton svg {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 4px;
+}
+
+.sidebar.collapsed .logoutButton {
+  width: auto;
+  padding: 8px 0;
+}
+
+.sidebar.collapsed .logoutButton span {
+  display: none; /* Esconde o texto "Sair" */
+}
+
+/* Botão de Toggle */
+.toggleButton {
+  background: none;
+  border: none;
+  color: #d1d5db;
+  cursor: pointer;
+  position: absolute;
+  right: -12px; /* Posiciona fora do sidebar */
+  top: 20px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #003f77;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+  z-index: 1001; /* Acima do sidebar */
+}
+
+.toggleButton:hover {
+  background-color: #0056a0;
+}
+
+.toggleButton svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.toggleButton.collapsed svg {
+  transform: rotate(180deg); /* Gira a seta */
+}
+
+/* Navegação */
+.nav {
+  flex-grow: 1;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  text-decoration: none;
+  color: #d1d5db;
+  transition: background-color 0.2s, color 0.2s;
+  position: relative;
+}
+
+.navLink:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
+
+.navLink.active {
+  color: #ffffff;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Indicador de link ativo */
+.navLink.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 60%;
+  width: 4px;
+  background-color: #2A79C8;
+  border-radius: 0 4px 4px 0;
+}
+
+.sidebar.collapsed .navLink {
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.sidebar.collapsed .navLink .name {
+  display: none; /* Esconde o nome do link */
+}
+
+.sidebar.collapsed .navLink .icon {
+  margin-right: 0;
+}
+
+/* Seção Inferior */
+.footer {
+  padding: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.sidebar.collapsed .footer {
+  padding: 16px 0;
+}
+
+.logoContainer {
+  text-align: center;
+}
+
+.logoContainer img {
+  max-width: 60px;
+  height: auto;
+}
