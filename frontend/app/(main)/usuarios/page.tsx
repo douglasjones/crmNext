@@ -3,6 +3,8 @@
 import { useRouter } from 'next/navigation';
 import React, { useState, useEffect, useCallback } from 'react';
 import { userService, User } from '@/services/userService';
+import { usePathname } from 'next/navigation'; // Import usePathname
+import LoadingOverlay from '@/components/ui/LoadingOverlay'; // Import LoadingOverlay
 
 // Estilos CSS-in-JS (sem alteração)
 const PageStyles = () => (
@@ -94,6 +96,34 @@ export default function UsuariosPage() {
   const router = useRouter();
   const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const pathname = usePathname(); // Get current pathname
+
+  // Simple mapping for breadcrumb display names
+  const breadcrumbMap: { [key: string]: string } = {
+    'adm': 'ADM',
+    'controle': 'Controle',
+    'usuarios': 'Usuários',
+    // Add other mappings as needed
+  };
+
+  // Explicit breadcrumbs for specific routes
+  const routeBreadcrumbs: { [key: string]: string[] } = {
+    '/usuarios': ['ADM', 'Usuários'],
+    // Add other specific routes if needed
+  };
+
+  // Generate breadcrumb dynamically
+  const generateBreadcrumb = () => {
+    if (routeBreadcrumbs[pathname]) {
+      return routeBreadcrumbs[pathname].join(' > ');
+    }
+
+    const segments = pathname.split('/').filter(segment => segment !== '' && segment !== '(main)');
+    const breadcrumbItems = segments.map((segment) => {
+      return breadcrumbMap[segment] || segment.charAt(0).toUpperCase() + segment.slice(1);
+    });
+    return breadcrumbItems.join(' > ');
+  };
 
   const fetchUsers = useCallback(async () => {
     setIsLoading(true);
@@ -137,50 +167,53 @@ export default function UsuariosPage() {
     <>
       <PageStyles />
       <div className="page-container">
-        <div className="header">
-          <h1 className="title">Usuários</h1>
-          <button onClick={handleNewUser} className="btn-primary">
-            Novo Usuário
-          </button>
-        </div>
+        {isLoading ? (
+          <LoadingOverlay />
+        ) : (
+          <>
+            <div style={{ color: '#888', fontSize: '0.9em', marginBottom: '10px' }}>{generateBreadcrumb()}</div>
+            <div className="header">
+              <h1 className="title">Usuários</h1>
+              <button onClick={handleNewUser} className="btn-primary">
+                Novo Usuário
+              </button>
+            </div>
 
-        <div className="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>Nome</th>
-                <th>Login</th>
-                <th>Status</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              {isLoading ? (
-                <tr><td colSpan={4}>Carregando...</td></tr>
-              ) : (
-                users.map((user) => (
-                  <tr key={user.pk}>
-                    <td>{user.ds_usuario}</td>
-                    <td>{user.ds_login}</td>
-                    <td>
-                      <span className={user.ic_status === 1 ? 'status-active' : 'status-inactive'}>
-                        {user.ic_status === 1 ? 'Ativo' : 'Inativo'}
-                      </span>
-                    </td>
-                    <td className="actions-cell">
-                      <button onClick={() => handleEditUser(user.pk)} className="btn-secondary">
-                        Editar
-                      </button>
-                      <button onClick={() => handleDeleteUser(user.pk)} className="btn btn-danger">
-                        Excluir
-                      </button>
-                    </td>
+            <div className="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Login</th>
+                    <th>Status</th>
+                    <th>Ações</th>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
+                </thead>
+                <tbody>
+                  {users.map((user) => (
+                    <tr key={user.pk}>
+                      <td>{user.ds_usuario}</td>
+                      <td>{user.ds_login}</td>
+                      <td>
+                        <span className={user.ic_status === 1 ? 'status-active' : 'status-inactive'}>
+                          {user.ic_status === 1 ? 'Ativo' : 'Inativo'}
+                        </span>
+                      </td>
+                      <td className="actions-cell">
+                        <button onClick={() => handleEditUser(user.pk)} className="btn-secondary">
+                          Editar
+                        </button>
+                        <button onClick={() => handleDeleteUser(user.pk)} className="btn btn-danger">
+                          Excluir
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
       </div>
     </>
   );
